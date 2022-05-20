@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  womginx:
+    build: .
+    container_name: womginx
+    environment:
+      - DISABLE_SSL=false
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./certificate/server.crt:/opt/womginx/certificate/server.crt
+      - ./certificate/server.key:/opt/womginx/certificate/server.key
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
